@@ -7,7 +7,22 @@
 <script lang="ts">
 import Vue from "vue";
 
-export default Vue.extend({});
+export default Vue.extend({
+  data() {
+    return {
+      message: ""
+    };
+  },
+  async mounted() {
+    const response = await fetch("http://localhost:8000/api/user", {
+      headers: { "Content-Type": "application/json" },
+      credentials: "include"
+    });
+
+    const content = await response.json();
+    console.log(content);
+  }
+});
 </script>
 
 <style>
